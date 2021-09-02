@@ -14,7 +14,9 @@ export default {
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    console.log(this.$router)
+  },
   methods: {}
 }
 
