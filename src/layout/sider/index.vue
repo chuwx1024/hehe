@@ -16,7 +16,7 @@
           <a-icon type="mail" />
           {{ item.meta.title }}
         </a-menu-item> -->
-        <a-sub-menu key="/home">
+        <a-sub-menu key="/node">
         <span slot="title"><a-icon type="mail" /><span>节点管理</span></span>
         <a-menu-item-group key="g1">
           <a-menu-item key="/node/nodeOne">
