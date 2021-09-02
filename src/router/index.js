@@ -15,6 +15,7 @@ export const routes = [
     children: [
       {
         path: '/node',
+        redirect: '/node/nodeOne',
         name: 'Node',
         meta: {
           title: '节点管理'

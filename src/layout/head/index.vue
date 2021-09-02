@@ -1,9 +1,10 @@
 <template>
   <div class="top-head">
     <a-layout-header class="headCard">
-      <a-breadcrumb>
+      <!-- <a-breadcrumb>
         <a-breadcrumb-item>Home</a-breadcrumb-item>
-      </a-breadcrumb>
+      </a-breadcrumb> -->
+      <left-bread-crumb/>
       <a-dropdown>
         <a class="ant-dropdown-link" @click="e => e.preventDefault()">
           <a-avatar size="small" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -23,9 +24,12 @@
 </template>
 
 <script>
+import LeftBreadCrumb from './LeftBreadCrumb.vue'
 export default {
   name: 'Head',
-  components: {},
+  components: {
+    LeftBreadCrumb
+  },
   props: [],
   data () {
     return {
