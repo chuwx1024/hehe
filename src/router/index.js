@@ -6,7 +6,7 @@ import Home from '@/views/home/index.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const routes = [
   {
     path: '/',
     redirect: '/home',

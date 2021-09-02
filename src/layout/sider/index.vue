@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { routes } from '../../router/index'
 export default {
   name: 'Sider',
   components: {},
@@ -48,7 +49,9 @@ export default {
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    console.log(routes)
+  },
   methods: {
     onClick (item) {
       this.$router.push(item.key)
