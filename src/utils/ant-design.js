@@ -5,7 +5,14 @@ import {
   Row,
   Col,
   FormModel,
-  Input
+  Input,
+  Layout,
+  Card,
+  Menu,
+  Icon,
+  Breadcrumb,
+  Dropdown,
+  Avatar
 } from 'ant-design-vue'
 
 Vue.use(Button)
@@ -13,3 +20,10 @@ Vue.use(Button)
   .use(Col)
   .use(FormModel)
   .use(Input)
+  .use(Layout)
+  .use(Card)
+  .use(Menu)
+  .use(Icon)
+  .use(Breadcrumb)
+  .use(Dropdown)
+  .use(Avatar)

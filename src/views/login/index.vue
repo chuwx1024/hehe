@@ -7,27 +7,27 @@
       </a-col>
       <a-col :span="14">
         <section class="login-right">
-          <a-form-model :model="form" :label-col="labelCol" class="login-form" >
+          <a-form-model :model="form" :rules="rules"  class="login-form" >
             <a-form-model-item  class="welcome">
               <h2>星云隐私计算平台</h2>
               <h2>欢迎登录</h2>
             </a-form-model-item>
-            <a-form-model-item >
-              <a-input v-model="form.name" >
+            <a-form-model-item  prop="name" >
+              <a-input ref="name" v-model="form.name" place-holder="用户名"  >
                 <svg slot="prefix" class="icon" aria-hidden=“true” >
                   <use xlink:href="#icon-custom-user"></use>
                 </svg>
               </a-input>
             </a-form-model-item>
-            <a-form-model-item has-feedback  prop="pass">
-              <a-input-password placeholder="input password" >
+            <a-form-model-item  prop="password" >
+              <a-input-password v-model="form.password" placeholder="密码" >
                 <svg slot="prefix" class="icon" aria-hidden=“true” >
                   <use xlink:href="#icon-password"></use>
                 </svg>
               </a-input-password>
             </a-form-model-item>
-            <a-form-model-item has-feedback  prop="pass" class="login-option">
-              <a-button type="primary" block>
+            <a-form-model-item   class="login-option" >
+              <a-button type="primary" block @click="onsubmit">
                 登录
               </a-button>
             </a-form-model-item>
@@ -49,15 +49,28 @@ export default {
   data () {
     return {
       form: {
-        name: 'ceshi',
-        password: 123
+        name: '',
+        password: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 6, max: 11, message: '6-11位数字', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
       }
     }
   },
   computed: {},
   watch: {},
   created () {},
-  methods: {}
+  methods: {
+    onsubmit () {
+      this.$router.push('/')
+    }
+  }
 }
 
 </script>
@@ -84,11 +97,8 @@ export default {
       right: 0;
       top: 0;
       bottom: 0;
-      .ant-form-item {
-        margin-bottom: 16px;
-      }
       .login-option {
-        margin-top: 30px;
+        padding-top: 16px;
       }
       .welcome {
         font-size: 20px;
@@ -103,7 +113,6 @@ export default {
       width: 100%;
       text-align: center;
     }
-
   }
 }
 </style>

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'normalize.css/normalize.css'
-import '@/assets/iconfont/iconfont.js'
+import '@/assets/iconfont/iconfont'
 import '@/assets/styles/index.css'
 
 import 'ant-design-vue/dist/antd.css'
