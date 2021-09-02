@@ -8,6 +8,7 @@
         style="width: 200px"
         class="menu-list"
         theme="dark"
+        mode="inline"
         :default-selected-keys="['/home']"
         @click="onClick"
       >
@@ -15,6 +16,17 @@
           <a-icon type="mail" />
           {{ item.meta.title }}
         </a-menu-item> -->
+        <a-sub-menu key="/home">
+        <span slot="title"><a-icon type="mail" /><span>节点管理</span></span>
+        <a-menu-item-group key="g1">
+          <a-menu-item key="/node/nodeOne">
+            节点一
+          </a-menu-item>
+          <a-menu-item key="/node/nodeTwo">
+            节点二
+          </a-menu-item>
+        </a-menu-item-group>
+      </a-sub-menu>
         <a-menu-item key="/home">
           <a-icon type="calendar" />
           工作台

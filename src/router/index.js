@@ -14,6 +14,32 @@ export const routes = [
     component: Layout,
     children: [
       {
+        path: '/node',
+        name: 'Home',
+        meta: {
+          title: '节点管理'
+        },
+        component: () => import('@/views/nodeManager'),
+        children: [
+          {
+            path: '/node/nodeOne',
+            name: 'NodeOne',
+            meta: {
+              title: '节点一'
+            },
+            component: () => import('@/views/nodeManager/nodeOne')
+          },
+          {
+            path: '/node/nodeTwo',
+            name: 'NodeTwo',
+            meta: {
+              title: '节点二'
+            },
+            component: () => import('@/views/nodeManager/nodeTwo')
+          }
+        ]
+      },
+      {
         path: '/home',
         name: 'Home',
         meta: {
