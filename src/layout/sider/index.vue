@@ -11,11 +11,15 @@
         :default-selected-keys="['/home']"
         @click="onClick"
       >
-        <a-menu-item key="/home" v-for="item in routes[0].children" :key="item.path" >
+        <!-- <a-menu-item  v-for="item in list" :key="item.path" >
           <a-icon type="mail" />
+          {{ item.meta.title }}
+        </a-menu-item> -->
+        <a-menu-item key="/home">
+          <a-icon type="calendar" />
           工作台
         </a-menu-item>
-        <!-- <a-menu-item key="/data">
+        <a-menu-item key="/data">
           <a-icon type="calendar" />
           数据管理
         </a-menu-item>
@@ -30,7 +34,7 @@
         <a-menu-item key="/info">
           <a-icon type="mail" />
           账户信息
-        </a-menu-item> -->
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
   </div>
@@ -44,13 +48,14 @@ export default {
   props: [],
   data () {
     return {
-
+      list: []
     }
   },
   computed: {},
   watch: {},
   created () {
-    console.log(routes[0].children)
+    // console.log(routes[0].children)
+    this.list = routes[0].children
   },
   methods: {
     onClick (item) {
