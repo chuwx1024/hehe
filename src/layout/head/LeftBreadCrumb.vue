@@ -19,8 +19,7 @@ export default {
   name: 'BreadCrumb',
   computed: {
     layerList () {
-      const list = this.$route.matched
-      list.shift()
+      const list = this.$route.matched.filter(item => item.meta && item.meta.title)
       return list
     }
   }
