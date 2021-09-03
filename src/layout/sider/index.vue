@@ -1,52 +1,29 @@
 <template>
-  <div class="left-sider">
+   <div class="left-sider">
     <a-layout-sider>
-      <div class="sider-head">
+      <div class="sider-head" >
         计算平台
       </div>
       <a-menu
-        style="width: 200px"
-        class="menu-list"
-        theme="dark"
+        :default-selected-keys="['1']"
+        :default-open-keys="['2']"
         mode="inline"
-        :default-selected-keys="['/home']"
-        @click="onClick"
+        theme="dark"
+        :inline-collapsed="collapsed"
+        @click="toDirection"
       >
-        <!-- <a-menu-item  v-for="item in list" :key="item.path" >
-          <a-icon type="mail" />
-          {{ item.meta.title }}
-        </a-menu-item> -->
-        <a-sub-menu key="/node">
-        <span slot="title"><a-icon type="mail" /><span>节点管理</span></span>
-        <a-menu-item-group key="g1">
-          <a-menu-item key="/node/nodeOne">
-            节点一
+        <template v-for="item in getlist">
+          <a-menu-item v-if="!item.children" :key="item.path">
+            <a-icon type="pie-chart" />
+            <span>{{ item.meta.title }}</span>
           </a-menu-item>
-          <a-menu-item key="/node/nodeTwo">
-            节点二
-          </a-menu-item>
-        </a-menu-item-group>
-      </a-sub-menu>
-        <a-menu-item key="/home">
-          <a-icon type="calendar" />
-          工作台
-        </a-menu-item>
-        <a-menu-item key="/data">
-          <a-icon type="calendar" />
-          数据管理
-        </a-menu-item>
-        <a-menu-item key="/item">
-          <a-icon type="mail" />
-          项目管理
-        </a-menu-item>
-        <a-menu-item key="/point">
-          <a-icon type="calendar" />
-          站点管理
-        </a-menu-item>
-        <a-menu-item key="/info">
-          <a-icon type="mail" />
-          账户信息
-        </a-menu-item>
+          <SubMenu
+            v-else
+            :key="item.path"
+            :menu-info="item"
+            @slectSon="toDirection"
+          />
+        </template>
       </a-menu>
     </a-layout-sider>
   </div>
@@ -54,23 +31,29 @@
 
 <script>
 import { routes } from '../../router/index'
+// 引入子组件
+import SubMenu from './he.vue'
+
 export default {
   name: 'Sider',
-  components: {},
+  components: {
+    SubMenu
+  },
   props: [],
   data () {
     return {
-      list: []
+      collapsed: false
     }
   },
-  computed: {},
-  watch: {},
-  created () {
-    // console.log(routes[0].children)
-    this.list = routes[0].children
+  computed: {
+    getlist () {
+      return routes[0].children
+    }
   },
+  watch: {},
+  created () {},
   methods: {
-    onClick (item) {
+    toDirection (item) {
       this.$router.push(item.key)
     }
   }
@@ -91,10 +74,9 @@ export default {
     padding-left: 16px;
     color: white;
   }
-  .menu-list {
+  .ant-menu {
     background-color: #0c2154;
     color: rgba(255, 255, 255, 0.65);
   }
 }
-
 </style>

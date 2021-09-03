@@ -9,7 +9,6 @@ Vue.use(VueRouter)
 export const routes = [
   {
     path: '/',
-    redirect: '/home',
     name: 'Layout',
     component: Layout,
     children: [

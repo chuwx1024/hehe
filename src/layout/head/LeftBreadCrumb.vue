@@ -19,8 +19,9 @@ export default {
   name: 'BreadCrumb',
   computed: {
     layerList () {
-      console.log(this.$route.matched)
-      return this.$route.matched
+      const list = this.$route.matched
+      list.shift()
+      return list
     }
   }
 }
