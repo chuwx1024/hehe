@@ -35,7 +35,25 @@ export const routes = [
             meta: {
               title: '节点二'
             },
-            component: () => import('@/views/nodeManager/nodeTwo')
+            component: () => import('@/views/nodeManager/nodeTwo'),
+            children: [
+              {
+                path: '/node/nodeOne/plus',
+                name: 'NodeOnePlus',
+                meta: {
+                  title: '节点一0'
+                },
+                component: () => import('@/views/nodeManager/nodeOne')
+              },
+              {
+                path: '/node/nodeTwo/plus',
+                name: 'NodeTwoPlus',
+                meta: {
+                  title: '节点二0'
+                },
+                component: () => import('@/views/nodeManager/nodeTwo/nodeTwoPlus')
+              }
+            ]
           }
         ]
       },
