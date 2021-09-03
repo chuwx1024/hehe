@@ -1,5 +1,8 @@
 <template>
-  <div class="data-page">数据</div>
+  <div class="data-page">
+    我是数据的父组件
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

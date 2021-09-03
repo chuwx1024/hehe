@@ -79,7 +79,27 @@ export const routes = [
         meta: {
           title: '数据管理'
         },
-        component: () => import('@/views/data')
+        component: () => import('@/views/data'),
+        children: [
+          {
+            path: '/data/dataList',
+            name: 'DataList',
+            hidden: true,
+            meta: {
+              title: '数据管理列表'
+            },
+            component: () => import('@/views/data/dataList')
+          },
+          {
+            path: '/data/dataDetail',
+            name: 'DataDetail',
+            hidden: true,
+            meta: {
+              title: '数据管理详情'
+            },
+            component: () => import('@/views/data/dataDetail')
+          }
+        ]
       },
       {
         path: '/item',
