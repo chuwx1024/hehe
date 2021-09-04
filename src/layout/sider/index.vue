@@ -13,7 +13,7 @@
         @click="toDirection"
       >
         <template v-for="item in list">
-          <a-menu-item v-if="!item.children" :key="item.path">
+          <a-menu-item v-if="!item.children || item.children === 0" :key="item.path">
             <a-icon type="pie-chart" />
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
