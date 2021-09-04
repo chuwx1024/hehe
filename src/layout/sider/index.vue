@@ -13,7 +13,7 @@
         @click="toDirection"
       >
         <template v-for="item in list">
-          <a-menu-item v-if="!item.children" :key="item.path">
+          <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.path">
             <a-icon type="pie-chart" />
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
@@ -64,14 +64,20 @@ export default {
     },
     listData (arr) {
       const list = arr.filter(item => {
-        if (!item.hidden && !item.children) {
-          return item
-        } else if (!item.hidden && item.children) {
-          const arr = this.listData(item.children)
-          if (arr.length) {
+        // if (!item.hidden && !item.children) {
+        //   return item
+        // } else if (!item.hidden && item.children) {
+        //   const arr = this.listData(item.children)
+        //   if (arr.length) {
+        //     item.children = this.listData(item.children)
+        //   } else {
+        //     delete item.children
+        //   }
+        //   return item
+        // }
+        if (!item.hidden) {
+          if (item.children) {
             item.children = this.listData(item.children)
-          } else {
-            delete item.children
           }
           return item
         }
