@@ -3,7 +3,6 @@
     :key="menuInfo.path"
     v-bind="$props"
     v-on="$listeners"
-    @click="titClick"
   >
     <span slot="title">
       <a-icon type="mail" /><span>{{ menuInfo.meta.title }}</span>
@@ -44,10 +43,6 @@ export default {
   watch: {},
   created () {},
   methods: {
-    titClick (item) {
-      console.log(item)
-      this.$emit('selectSon', item.key)
-    }
   }
 }
 

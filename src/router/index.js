@@ -76,6 +76,7 @@ export const routes = [
       {
         path: '/data',
         name: 'Data',
+        redirect: '/data/dataList',
         meta: {
           title: '数据管理'
         },

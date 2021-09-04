@@ -5,14 +5,14 @@
         计算平台
       </div>
       <a-menu
-        :default-selected-keys="['1']"
+        :default-selected-keys="['/home']"
         :default-open-keys="['2']"
         mode="inline"
         theme="dark"
         :inline-collapsed="collapsed"
         @click="toDirection"
       >
-        <template v-for="item in getlist">
+        <template v-for="item in list">
           <a-menu-item v-if="!item.children" :key="item.path">
             <a-icon type="pie-chart" />
             <span>{{ item.meta.title }}</span>
@@ -42,19 +42,41 @@ export default {
   props: [],
   data () {
     return {
-      collapsed: false
+      collapsed: false,
+      getlist: routes[0].children,
+      list: []
+
     }
   },
   computed: {
-    getlist () {
-      return routes[0].children
-    }
+    // getlist () {
+    //   return routes[0].children
+    // }
   },
   watch: {},
-  created () {},
+  created () {
+    this.list = this.listData(this.getlist)
+    console.log(this.list)
+  },
   methods: {
     toDirection (item) {
       this.$router.push(item.key)
+    },
+    listData (arr) {
+      const list = arr.filter(item => {
+        if (!item.hidden && !item.children) {
+          return item
+        } else if (!item.hidden && item.children) {
+          const arr = this.listData(item.children)
+          if (arr.length) {
+            item.children = this.listData(item.children)
+          } else {
+            delete item.children
+          }
+          return item
+        }
+      })
+      return list
     }
   }
 }
