@@ -5,15 +5,14 @@
         计算平台
       </div>
       <a-menu
-        :default-selected-keys="['/home']"
-        :default-open-keys="['2']"
+        :selectedKeys="abc"
         mode="inline"
         theme="dark"
         :inline-collapsed="collapsed"
         @click="toDirection"
       >
         <template v-for="item in list">
-          <a-menu-item v-if="!item.children || item.children === 0" :key="item.path">
+          <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.path">
             <a-icon type="pie-chart" />
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
@@ -44,19 +43,30 @@ export default {
     return {
       collapsed: false,
       getlist: routes[0].children,
-      list: []
+      list: [],
+      abc: []
 
     }
   },
   computed: {
-    // getlist () {
-    //   return routes[0].children
-    // }
+    highLight () {
+      return this.$route.fullPath
+    }
   },
-  watch: {},
+  watch: {
+    highLight: {
+      immediate: true,
+      handler () {
+        this.abc = []
+        this.$route.matched.forEach(item => {
+          this.abc.push(item.path)
+        })
+      }
+    }
+  },
   created () {
     this.list = this.listData(this.getlist)
-    console.log(this.list)
+    console.log(this.$route)
   },
   methods: {
     toDirection (item) {
