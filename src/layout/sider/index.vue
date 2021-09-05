@@ -5,7 +5,7 @@
         计算平台
       </div>
       <a-menu
-        :selectedKeys="abc"
+        :selectedKeys="highLightArrs"
         mode="inline"
         theme="dark"
         :inline-collapsed="collapsed"
@@ -44,24 +44,18 @@ export default {
       collapsed: false,
       getlist: routes[0].children,
       list: [],
-      abc: []
-
-    }
-  },
-  computed: {
-    highLight () {
-      return this.$route.fullPath
+      highLightArrs: []
     }
   },
   watch: {
-    highLight: {
-      immediate: true,
+    '$route.fullPath': {
       handler () {
-        this.abc = []
+        this.highLightArrs = []
         this.$route.matched.forEach(item => {
-          this.abc.push(item.path)
+          this.highLightArrs.push(item.path)
         })
-      }
+      },
+      immediate: true
     }
   },
   created () {
