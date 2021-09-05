@@ -136,6 +136,7 @@ const router = new VueRouter({
 
 // whiteList
 const routerWhiteList = ['/login']
+// 前置路由守卫  每次切换路由  都会触发
 router.beforeEach(async (to, from, next) => {
   Nprogress.start()
   const token = getToken()
