@@ -12,7 +12,8 @@ import {
   Icon,
   Breadcrumb,
   Dropdown,
-  Avatar
+  Avatar,
+  message
 } from 'ant-design-vue'
 
 Vue.use(Button)
@@ -27,3 +28,4 @@ Vue.use(Button)
   .use(Breadcrumb)
   .use(Dropdown)
   .use(Avatar)
+Vue.prototype.$message = message

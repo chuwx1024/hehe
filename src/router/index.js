@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Nprogress from 'nprogress'
+import { getToken } from '@/utils/handleCookie'
 import Layout from '@/layout/layout.vue'
 import Login from '@/views/login'
 import Home from '@/views/home/index.vue'
@@ -130,6 +132,26 @@ export const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// whiteList
+const routerWhiteList = ['/login']
+router.beforeEach(async (to, from, next) => {
+  Nprogress.start()
+  const token = getToken()
+  if (token) {
+    alert('我有 token 我登录过了')
+    next()
+  } else {
+    alert('我没有 token 我没有登录')
+    if (routerWhiteList.includes(to.path)) {
+      alert('我没有 token 我没有登录 但是我在白名单中')
+      next()
+    } else {
+      next({ name: 'Login' })
+    }
+  }
+  Nprogress.done()
 })
 
 export default router

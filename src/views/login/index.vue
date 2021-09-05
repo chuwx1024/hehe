@@ -7,7 +7,7 @@
       </a-col>
       <a-col :span="14">
         <section class="login-right">
-          <a-form-model :model="form" :rules="rules"  class="login-form" >
+          <a-form-model :model="form" :rules="rules" ref="cccc"  class="login-form" >
             <a-form-model-item  class="welcome">
               <h2>星云隐私计算平台</h2>
               <h2>欢迎登录</h2>
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { login } from '@/api/login'
+import { setToken } from '@/utils/handleCookie'
 export default {
   name: '',
   components: {},
@@ -54,8 +56,7 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 6, max: 11, message: '6-11位数字', trigger: 'blur' }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
@@ -68,7 +69,20 @@ export default {
   created () {},
   methods: {
     onsubmit () {
-      this.$router.push('/')
+      this.$refs.cccc.validate(async valid => {
+        if (valid) {
+          const params = {
+            username: this.form.name,
+            password: this.form.password
+          }
+          const { data } = await login(params)
+
+          this.$message.success('登录成功 欢迎')
+          const { token } = data
+          setToken(token)
+          this.$router.push({ name: 'Home' })
+        }
+      })
     }
   }
 }
