@@ -14,6 +14,7 @@ Vue.use(Plugin)
 
 Vue.config.productionTip = false
 // Vue.config.productionTip = false
+// woshidiertian
 
 new Vue({
   router,
