@@ -13,6 +13,7 @@ import { Plugin } from '@/components/Dict/index.js'
 Vue.use(Plugin)
 
 Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
 new Vue({
   router,
